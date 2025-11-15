@@ -124,11 +124,10 @@ DataSience-CreditCard/
 │ ├── 01_data_exploration.ipynb # Phân tích và khám phá dữ liệu  
 │ ├── 02_preprocessing.ipynb # Tiền xử lý dữ liệu  
 │ └── 03_modeling.ipynb # Xây dựng và đánh giá mô hình  
-└── src/  
-├── init.py  
-├── data_processing.py # Các hàm hỗ trợ tiền xử lý dữ liệu  
-├── visualization.py # Các hàm hỗ trợ vẽ biểu đồ  
-└── models.py # Lớp cài đặt mô hình Logistic Regression  
+├── src/  
+│ ├── data_processing.py # Các hàm hỗ trợ tiền xử lý dữ liệu  
+│ ├── visualization.py # Các hàm hỗ trợ vẽ biểu đồ  
+│ └── models.py # Lớp cài đặt mô hình Logistic Regression  
 ### **10. Thách thức & Giải pháp (Challenges & Solutions)**
 
 *   **Thách thức 1:** Xử lý file CSV có nhiều kiểu dữ liệu khác nhau chỉ bằng NumPy.
