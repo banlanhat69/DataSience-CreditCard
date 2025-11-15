@@ -114,21 +114,21 @@ Mô hình Logistic Regression sau khi được huấn luyện trên bộ dữ li
 **Phân tích:** Mô hình hoạt động tốt trong việc xác định khách hàng trung thành và có độ tin cậy khá khi cảnh báo khách hàng rủi ro (Precision cao). Tuy nhiên, điểm yếu lớn nhất là **Recall ở mức trung bình (58.6%)**, nghĩa là mô hình vẫn còn bỏ sót khoảng 41.4% khách hàng sắp rời đi.
 
 ### **9. Cấu trúc Project (Project Structure)**
-DataSience-CreditCard/
-├── README.md # File mô tả tổng quan dự án
-├── requirements.txt # Danh sách các thư viện cần thiết
-├── data/
-│ ├── raw/ # Chứa dữ liệu thô ban đầu
-│ └── processed/ # Chứa dữ liệu đã được xử lý và làm sạch
-├── notebooks/
-│ ├── 01_data_exploration.ipynb # Phân tích và khám phá dữ liệu
-│ ├── 02_preprocessing.ipynb # Tiền xử lý dữ liệu
-│ └── 03_modeling.ipynb # Xây dựng và đánh giá mô hình
-└── src/
-├── init.py
-├── data_processing.py # Các hàm hỗ trợ tiền xử lý dữ liệu
-├── visualization.py # Các hàm hỗ trợ vẽ biểu đồ
-└── models.py # Lớp cài đặt mô hình Logistic Regression
+DataSience-CreditCard/  
+├── README.md # File mô tả tổng quan dự án  
+├── requirements.txt # Danh sách các thư viện cần thiết  
+├── data/  
+│ ├── raw/ # Chứa dữ liệu thô ban đầu  
+│ └── processed/ # Chứa dữ liệu đã được xử lý và làm sạch  
+├── notebooks/  
+│ ├── 01_data_exploration.ipynb # Phân tích và khám phá dữ liệu  
+│ ├── 02_preprocessing.ipynb # Tiền xử lý dữ liệu  
+│ └── 03_modeling.ipynb # Xây dựng và đánh giá mô hình  
+└── src/  
+├── init.py  
+├── data_processing.py # Các hàm hỗ trợ tiền xử lý dữ liệu  
+├── visualization.py # Các hàm hỗ trợ vẽ biểu đồ  
+└── models.py # Lớp cài đặt mô hình Logistic Regression  
 ### **10. Thách thức & Giải pháp (Challenges & Solutions)**
 
 *   **Thách thức 1:** Xử lý file CSV có nhiều kiểu dữ liệu khác nhau chỉ bằng NumPy.
