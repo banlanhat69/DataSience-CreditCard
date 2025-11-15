@@ -1,6 +1,6 @@
 import numpy as np
 
-class MyLogisticRegression:
+class LogisticRegression:
     """
     Cài đặt mô hình Logistic Regression.
     """
