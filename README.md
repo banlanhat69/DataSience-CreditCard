@@ -2,24 +2,7 @@
 
 Dự án này tập trung vào việc phân tích dữ liệu và xây dựng mô hình học máy để dự đoán khả năng một khách hàng sẽ rời bỏ dịch vụ thẻ tín dụng. Toàn bộ quy trình từ xử lý dữ liệu đến xây dựng mô hình được thực hiện chủ yếu bằng thư viện NumPy, nhằm mục đích rèn luyện và thể hiện sự am hiểu sâu sắc về các hoạt động tính toán cốt lõi trong Khoa học Dữ liệu.
 
----
-
-### **2. Mục Lục**
-1.  [Giới thiệu](#3-giới-thiệu)
-2.  [Dataset](#4-dataset)
-3.  [Phương pháp thực hiện (Method)](#5-phương-pháp-thực-hiện-method)
-4.  [Cài đặt & Môi trường (Installation & Setup)](#6-cài-đặt--môi-trường-installation--setup)
-5.  [Hướng dẫn sử dụng (Usage)](#7-hướng-dẫn-sử-dụng-usage)
-6.  [Kết quả (Results)](#8-kết-quả-results)
-7.  [Cấu trúc Project (Project Structure)](#9-cấu-trúc-project-project-structure)
-8.  [Thách thức & Giải pháp (Challenges & Solutions)](#10-thách-thức--giải-pháp-challenges--solutions)
-9.  [Hướng phát triển (Future Improvements)](#11-hướng-phát-triển-future-improvements)
-10. [Tác giả (Contributors)](#12-tác-giả-contributors)
-11. [Giấy phép (License)](#13-giấy-phép-license)
-
----
-
-### **3. Giới thiệu**
+### **Giới thiệu**
 *   **Mô tả bài toán:** Trong ngành tài chính-ngân hàng, việc giữ chân khách hàng cũ (customer retention) có chi phí hiệu quả hơn nhiều so với việc thu hút khách hàng mới. Do đó, việc xác định sớm những khách hàng có nguy cơ rời bỏ (churn) để đưa ra các biện pháp can thiệp kịp thời là một bài toán cực kỳ quan trọng.
 *   **Động lực và ứng dụng:** Dự án này mô phỏng một bài toán thực tế, nơi một ngân hàng muốn giảm tỷ lệ khách hàng rời bỏ dịch vụ thẻ tín dụng. Mô hình dự đoán có thể được tích hợp vào hệ thống CRM (Quản lý quan hệ khách hàng) để tự động gắn cờ các khách hàng rủi ro, giúp đội ngũ chăm sóc khách hàng có thể tiếp cận và đưa ra các ưu đãi phù hợp.
 *   **Mục tiêu cụ thể:**
@@ -28,11 +11,11 @@ Dự án này tập trung vào việc phân tích dữ liệu và xây dựng m�
     3.  Huấn luyện và đánh giá mô hình Logistic Regression để dự đoán khả năng rời bỏ.
     4.  Cài đặt lại thuật toán Logistic Regression từ đầu bằng NumPy để so sánh và đối chiếu.
 
-### **4. Dataset**
+### **Dataset**
 *   **Nguồn dữ liệu:** Dữ liệu được lấy từ cuộc thi "Credit Card Customers" trên nền tảng Kaggle.
     *   **Link:** [https://www.kaggle.com/datasets/sakshigoyal7/credit-card-customers](https://www.kaggle.com/datasets/sakshigoyal7/credit-card-customers)
 *   **Kích thước và đặc điểm:**
-    *   Dữ liệu gốc bao gồm 10,127 khách hàng và 23 thuộc tính.
+    *   Dữ liệu gốc bao gồm 10127 khách hàng và 23 thuộc tính.
     *   Sau quá trình lựa chọn đặc trưng và xử lý outliers, bộ dữ liệu cuối cùng được sử dụng để huấn luyện có kích thước nhỏ hơn, tập trung vào các đặc trưng có giá trị nhất.
 *   **Mô tả các features (đã được chọn lọc):**
     *   `Attrition_Flag`: Biến mục tiêu (Đã rời bỏ / Khách hàng hiện tại).
@@ -42,29 +25,28 @@ Dự án này tập trung vào việc phân tích dữ liệu và xây dựng m�
     *   `Total_Ct_Chng_Q4_Q1`: Sự thay đổi về số lượng giao dịch từ Quý 4 đến Quý 1.
     *   `Total_Relationship_Count`: Số lượng sản phẩm của ngân hàng mà khách hàng đang sử dụng.
     *   `Months_Inactive_12_mon`: Số tháng không hoạt động trong 12 tháng gần nhất.
-    *   `Contacts_Count_12_mon`: Số lần liên hệ trong 12 tháng gần nhất.
     *   `Credit_Limit`: Hạn mức tín dụng của thẻ.
     *   `Avg_Utilization_Ratio`: Tỷ lệ sử dụng thẻ trung bình.
 
-### **5. Phương pháp thực hiện (Method)**
+### **Phương pháp thực hiện**
 
 Quy trình xử lý và mô hình hóa dữ liệu được chia thành các bước chính sau:
 
 1.  **Phân tích dữ liệu khám phá (EDA):** Sử dụng Matplotlib và Seaborn để trực quan hóa dữ liệu, tìm ra các mối quan hệ và các yếu tố dự báo mạnh nhất.
-2.  **Lựa chọn đặc trưng (Feature Selection):** Dựa trên EDA, loại bỏ các đặc trưng nhân khẩu học (tuổi, giới tính) có ít ảnh hưởng và giữ lại các đặc trưng về hành vi giao dịch.
-3.  **Tiền xử lý dữ liệu (Preprocessing):**
-    *   **Mã hóa (Encoding):** Chuyển đổi các biến phân loại sang dạng số.
-    *   **Kỹ thuật đặc trưng (Feature Engineering):** Tạo ra đặc trưng mới `Utilization_Ratio` (`Total_Revolving_Bal / Credit_Limit`) để tăng cường sức mạnh dự báo.
+2.  **Lựa chọn đặc trưng:** Dựa trên EDA, loại bỏ các đặc trưng nhân khẩu học (tuổi, giới tính) có ít ảnh hưởng và giữ lại các đặc trưng về hành vi giao dịch.
+3.  **Tiền xử lý dữ liệu:**
+    *   **Encoding:** Chuyển đổi các biến phân loại sang dạng số.
+    *   **Kỹ thuật đặc trưng:** Tạo ra đặc trưng mới `Utilization_Ratio` (`Total_Revolving_Bal / Credit_Limit`) để tăng cường sức mạnh dự báo.
     *   **Xử lý Outliers:** Sử dụng phương pháp IQR để xác định và loại bỏ các hàng chứa giá trị ngoại lệ.
-    *   **Chuẩn hóa (Standardization):** Dùng Z-score scaling để đưa tất cả các đặc trưng về cùng một thang đo (trung bình 0, độ lệch chuẩn 1).
-4.  **Mô hình hóa (Modeling):**
+    *   **Chuẩn hóa:** Dùng Z-score scaling để đưa tất cả các đặc trưng về cùng một thang đo (trung bình 0, độ lệch chuẩn 1).
+4.  **Mô hình hóa:**
     *   **Thuật toán:** Sử dụng **Logistic Regression**, một mô hình tuyến tính hiệu quả cho bài toán phân loại nhị phân. Hàm Sigmoid được dùng để chuyển đổi đầu ra thành xác suất:
         $$ P(y=1|X) = \sigma(z) = \frac{1}{1 + e^{-z}} $$
         Trong đó $z = wX + b$.
-    *   **Cài đặt bằng NumPy:** Lớp `MyLogisticRegression` trong `src/models.py` đã được xây dựng từ đầu, cài đặt thuật toán tối ưu hóa Gradient Descent để cập nhật trọng số. Một hàm Sigmoid ổn định về mặt số học cũng được triển khai để tránh lỗi `overflow`.
+    *   **Cài đặt bằng NumPy:** Lớp `LogisticRegression` trong `src/models.py` đã được xây dựng, cài đặt thuật toán tối ưu hóa Gradient Descent để cập nhật trọng số. 
     *   **Đánh giá:** Mô hình được đánh giá dựa trên các chỉ số Accuracy, Precision, Recall, và F1-Score trên tập kiểm tra (20% dữ liệu).
 
-### **6. Cài đặt & Môi trường (Installation & Setup)**
+### **Cài đặt & Môi trường (Installation & Setup)**
 
 Để chạy lại dự án này, hãy làm theo các bước sau:
 
@@ -73,30 +55,24 @@ Quy trình xử lý và mô hình hóa dữ liệu được chia thành các bư
     git clone https://github.com/banlanhat69/DataSience-CreditCard.git
     cd DataSience-CreditCard
     ```
-2.  **Tạo môi trường ảo (khuyến khích):**
-    ```bash
-    python -m venv venv
-    source venv/bin/activate  # Trên macOS/Linux
-    # venv\Scripts\activate      # Trên Windows
-    ```
-3.  **Cài đặt các thư viện cần thiết:**
+2.  **Cài đặt các thư viện cần thiết:**
     ```bash
     pip install -r requirements.txt
     ```
 
-### **7. Hướng dẫn sử dụng (Usage)**
+### **Hướng dẫn sử dụng**
 
-Dự án được chia thành các file Jupyter Notebook, bạn nên chạy theo thứ tự sau:
+Dự án được chia thành các file Jupyter Notebook, nên chạy theo thứ tự sau:
 
 1.  **`notebooks/01_data_exploration.ipynb`:** Chạy notebook này để xem các bước phân tích, trực quan hóa và rút ra các nhận định ban đầu về dữ liệu.
 2.  **`notebooks/02_preprocessing.ipynb`:** Chứa toàn bộ quy trình tiền xử lý dữ liệu, từ lựa chọn đặc trưng đến chuẩn hóa và lưu lại file dữ liệu sạch.
-3.  **`notebooks/03_modeling.ipynb`:** Tải dữ liệu đã xử lý, huấn luyện và đánh giá hai phiên bản của mô hình Logistic Regression (Scikit-learn và tự cài đặt).
+3.  **`notebooks/03_modeling.ipynb`:** Tải dữ liệu đã xử lý, huấn luyện và đánh giá mô hình Logistic Regression.
 
-### **8. Kết quả (Results)**
+### **Kết quả**
 
 #### **Kết quả phân tích khám phá**
-*   Dữ liệu bị mất cân bằng với **16.1%** khách hàng rời bỏ.
-*   Các đặc trưng về **hành vi giao dịch** (`Total_Trans_Ct`, `Total_Trans_Amt`, `Total_Revolving_Bal`) là những yếu tố dự báo mạnh nhất, cho thấy sự khác biệt rõ rệt giữa hai nhóm khách hàng.
+*   Dữ liệu bị mất cân bằng với 16.1% khách hàng rời bỏ.
+*   Các đặc trưng về hành vi giao dịch (`Total_Trans_Ct`, `Total_Trans_Amt`, `Total_Revolving_Bal`) là những yếu tố dự báo mạnh nhất, cho thấy sự khác biệt rõ rệt giữa hai nhóm khách hàng.
 
 #### **Kết quả mô hình**
 Mô hình Logistic Regression sau khi được huấn luyện trên bộ dữ liệu đã tối ưu hóa đạt được hiệu suất sau trên tập kiểm tra:
@@ -106,14 +82,9 @@ Mô hình Logistic Regression sau khi được huấn luyện trên bộ dữ li
 *   **Recall:** 58.6%
 *   **F1-Score:** 0.659
 
-**Ma trận nhầm lẫn:**
-*(Bạn hãy chụp lại ảnh kết quả ma trận nhầm lẫn, tải lên repo và đặt tên file là `confusion_matrix.png` rồi thay thế dòng dưới đây)*
-![Confusion Matrix](./confusion_matrix.png)
+**Phân tích:** Mô hình hoạt động tốt trong việc xác định khách hàng trung thành và có độ tin cậy khá khi cảnh báo khách hàng rủi ro (Precision cao). Tuy nhiên, điểm yếu lớn nhất là Recall ở mức trung bình (58.6%), nghĩa là mô hình vẫn còn bỏ sót khoảng 41.4% khách hàng sắp rời đi.
 
-
-**Phân tích:** Mô hình hoạt động tốt trong việc xác định khách hàng trung thành và có độ tin cậy khá khi cảnh báo khách hàng rủi ro (Precision cao). Tuy nhiên, điểm yếu lớn nhất là **Recall ở mức trung bình (58.6%)**, nghĩa là mô hình vẫn còn bỏ sót khoảng 41.4% khách hàng sắp rời đi.
-
-### **9. Cấu trúc Project (Project Structure)**
+### **Cấu trúc Project**
 DataSience-CreditCard/  
 ├── README.md # File mô tả tổng quan dự án  
 ├── requirements.txt # Danh sách các thư viện cần thiết  
@@ -128,8 +99,8 @@ DataSience-CreditCard/
 │ ├── data_processing.py # Các hàm hỗ trợ tiền xử lý dữ liệu  
 │ ├── visualization.py # Các hàm hỗ trợ vẽ biểu đồ  
 │ └── models.py # Lớp cài đặt mô hình Logistic Regression  
-### **10. Thách thức & Giải pháp (Challenges & Solutions)**
 
+### **Thách thức & Giải pháp**
 *   **Thách thức 1:** Xử lý file CSV có nhiều kiểu dữ liệu khác nhau chỉ bằng NumPy.
     *   **Giải pháp:** Đọc toàn bộ dữ liệu dưới dạng chuỗi (`dtype=str`), sau đó viết các hàm để chuyển đổi từng cột sang kiểu dữ liệu số phù hợp một cách thủ công.
 *   **Thách thức 2:** Cài đặt mô hình Logistic Regression gặp lỗi `overflow` khi tính toán hàm `sigmoid`.
@@ -137,16 +108,16 @@ DataSience-CreditCard/
 *   **Thách thức 3:** Xử lý outliers lặp đi lặp lại nhưng chúng vẫn xuất hiện.
     *   **Giải pháp:** Hiểu ra rằng mỗi lần xóa outliers, phân phối dữ liệu sẽ thay đổi, dẫn đến các giới hạn IQR mới. Quyết định chỉ thực hiện việc loại bỏ outliers đúng một lần để tránh xóa quá nhiều dữ liệu.
 
-### **11. Hướng phát triển (Future Improvements)**
+### **Hướng phát triển**
 
 *   **Cải thiện Recall:** Áp dụng các kỹ thuật xử lý dữ liệu mất cân bằng như **SMOTE** (tạo dữ liệu giả cho lớp thiểu số) hoặc sử dụng tham số `class_weight='balanced'` trong mô hình để "trừng phạt" nặng hơn khi dự đoán sai các ca rời bỏ.
 *   **Thử nghiệm thuật toán khác:** Sử dụng các mô hình mạnh hơn như **Random Forest** hoặc **XGBoost**, vốn thường cho kết quả tốt hơn trên dữ liệu dạng bảng.
-*   **Điều chỉnh ngưỡng quyết định (Threshold Tuning):** Thay vì dùng ngưỡng 0.5 mặc định, có thể tìm một ngưỡng tối ưu hơn để cân bằng giữa Precision và Recall tùy theo mục tiêu kinh doanh.
+*   **Điều chỉnh ngưỡng quyết định:** Thay vì dùng ngưỡng 0.5 mặc định, có thể tìm một ngưỡng tối ưu hơn để cân bằng giữa Precision và Recall tùy theo mục tiêu kinh doanh.
 
-### **12. Tác giả (Contributors)**
-*   **Tên:** [Điền tên của bạn vào đây]
-*   **Contact:** [Điền email hoặc link LinkedIn của bạn]
+### **Tác giả**
+*   **Tên:** Nguyễn Bá Nam
+*   **Contact:** 23122043@student.hcmus.edu.vn
 *   **GitHub:** [banlanhat69](https://github.com/banlanhat69)
 
-### **13. Giấy phép (License)**
-Dự án này được cấp phép theo Giấy phép MIT.
+### **License**
+Dự án này được cấp phép theo Giấy phép Apache License, ver 2.0.
