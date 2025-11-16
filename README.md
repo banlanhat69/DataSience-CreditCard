@@ -40,7 +40,7 @@ Quy trình xử lý và mô hình hóa dữ liệu được chia thành các bư
     *   **Chuẩn hóa:** Dùng Z-score scaling để đưa tất cả các đặc trưng về cùng một thang đo (trung bình 0, độ lệch chuẩn 1).
 4.  **Mô hình hóa:**
     *   **Thuật toán:** Sử dụng **Logistic Regression**, một mô hình tuyến tính hiệu quả cho bài toán phân loại nhị phân. Hàm Sigmoid được dùng để chuyển đổi đầu ra thành xác suất:
-        $ P(y=1|X) = \sigma(z) = \frac{1}{1 + e^{-z}} $
+        $P(y=1|X) = \sigma(z) = \frac{1}{1 + e^{-z}}$
         Trong đó $z = wX + b$.
     *   **Cài đặt bằng NumPy:** Lớp `LogisticRegression` trong `src/models.py` đã được xây dựng, cài đặt thuật toán tối ưu hóa Gradient Descent để cập nhật trọng số. 
     *   **Đánh giá:** Mô hình được đánh giá dựa trên các chỉ số Accuracy, Precision, Recall, và F1-Score trên tập kiểm tra (20% dữ liệu).
