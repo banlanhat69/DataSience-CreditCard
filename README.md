@@ -9,7 +9,6 @@ Dự án này tập trung vào việc phân tích dữ liệu và xây dựng m�
     1.  Thực hiện phân tích dữ liệu khám phá (EDA) để tìm ra các yếu tố chính ảnh hưởng đến việc khách hàng rời bỏ.
     2.  Xây dựng một quy trình tiền xử lý dữ liệu hoàn chỉnh chỉ bằng NumPy.
     3.  Huấn luyện và đánh giá mô hình Logistic Regression để dự đoán khả năng rời bỏ.
-    4.  Cài đặt lại thuật toán Logistic Regression từ đầu bằng NumPy để so sánh và đối chiếu.
 
 ### **Dataset**
 *   **Nguồn dữ liệu:** Dữ liệu được lấy từ cuộc thi "Credit Card Customers" trên nền tảng Kaggle.
@@ -120,4 +119,4 @@ DataSience-CreditCard/
 *   **GitHub:** [banlanhat69](https://github.com/banlanhat69)
 
 ### **License**
-Dự án này được cấp phép theo Giấy phép Apache License, ver 2.0.
+Giấy phép Apache License, ver 2.0.
